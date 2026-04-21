@@ -1,0 +1,20 @@
+name: Agente_Sincronizacion
+
+# 1. El disparador: Se activa solo cuando haces "push" a la rama main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notificar_fabric:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Descargando archivos del repositorio
+        uses: actions/checkout@v4
+
+      - name: 🤖 Activando Agente de Despliegue
+        run: |
+          echo "Detectado cambio en la rama main."
+          echo "Sincronizando archivos con el Workspace de Fabric..."
+          # Aquí es donde el Agente termina de preparar la versión para que Fabric la absorba
