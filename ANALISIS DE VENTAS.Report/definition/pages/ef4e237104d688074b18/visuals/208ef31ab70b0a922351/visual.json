@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
   "name": "208ef31ab70b0a922351",
   "position": {
-    "x": 10,
+    "x": 10.08,
     "y": 0,
     "z": 0,
-    "height": 280,
-    "width": 280,
+    "height": 279.36,
+    "width": 629.28,
     "tabOrder": 0
   },
   "visual": {
@@ -29,6 +29,24 @@
               "queryRef": "VentasFact.País",
               "nativeQueryRef": "País",
               "active": true
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tabla_Medidas"
+                    }
+                  },
+                  "Property": "Margen%"
+                }
+              },
+              "queryRef": "Tabla_Medidas.Margen%",
+              "nativeQueryRef": "Margen%"
             }
           ]
         }
