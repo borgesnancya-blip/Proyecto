@@ -1,0 +1,57 @@
+table DimCalendario
+	lineageTag: 00f15aa4-a0a5-47e1-bd86-bc5e9d028530
+
+	column Date
+		formatString: d/m/yy
+		lineageTag: 2ab13b6d-a724-4bc6-ab5f-c5b7211b206d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variación
+			isDefault
+			relationship: 72fee668-9e95-4f81-bfa6-28dedecd1d97
+			defaultHierarchy: LocalDateTable_c36b2bf2-e9e0-4ea4-a63c-25c50ba808bc.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Mes_Numero = MONTH(DimCalendario[Date])
+		dataType: int64
+		formatString: 0
+		lineageTag: f38112ba-3e2d-418d-814f-ed4e11629389
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes_Nombre =
+			
+			FORMAT(DimCalendario[Date],"mmm")
+		lineageTag: 5b0e5932-7ec6-4078-9a32-27c141882ed8
+		summarizeBy: none
+		sortByColumn: Mes_Numero
+
+		annotation SummarizationSetBy = Automatic
+
+	column Año = YEAR(DimCalendario[Date])
+		formatString: 0
+		lineageTag: e9dca7c4-3e32-4b27-9863-9e239da815cb
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes_Año = FORMAT(DimCalendario[Date],"mm-yy")
+		lineageTag: 00060243-2a48-4d4f-a958-7382e58d3176
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCalendario = calculated
+		mode: import
+		source = CALENDARAUTO()
+
+	annotation PBI_Id = b88995167a024ae682d1bbb9395926b4
+

@@ -1,0 +1,9 @@
+relationship 72fee668-9e95-4f81-bfa6-28dedecd1d97
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimCalendario.Date
+	toColumn: LocalDateTable_c36b2bf2-e9e0-4ea4-a63c-25c50ba808bc.Date
+
+relationship b06d78f2-a071-002f-ccaa-ac5752e33879
+	fromColumn: VentasFact.Fecha
+	toColumn: DimCalendario.Date
+

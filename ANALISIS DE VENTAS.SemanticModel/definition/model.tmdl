@@ -1,0 +1,22 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-AR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["VentasFact","Tabla_Medidas"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table VentasFact
+ref table DateTableTemplate_19b61054-3304-4855-9997-f18d3293b7ad
+ref table DimCalendario
+ref table LocalDateTable_c36b2bf2-e9e0-4ea4-a63c-25c50ba808bc
+ref table Tabla_Medidas
+
+ref cultureInfo es-ES
+

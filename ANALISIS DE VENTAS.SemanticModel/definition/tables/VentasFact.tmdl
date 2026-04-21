@@ -1,0 +1,106 @@
+table VentasFact
+	lineageTag: 5bd331ae-2226-4189-99ee-d13b5c973b7b
+
+	column 'Tipos de Clientes'
+		dataType: string
+		lineageTag: 83966ca2-300a-4a29-be4f-b82824f76fc3
+		summarizeBy: none
+		sourceColumn: Tipos de Clientes
+
+		annotation SummarizationSetBy = Automatic
+
+	column País
+		dataType: string
+		lineageTag: 56c1d330-3b69-4e9d-9464-8a47b0b7e06b
+		summarizeBy: none
+		sourceColumn: País
+
+		annotation SummarizationSetBy = Automatic
+
+	column Produto
+		dataType: string
+		lineageTag: a9d24a5f-bb4f-4d6c-94f2-4cff2f53e4bb
+		summarizeBy: none
+		sourceColumn: Produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Valor Total'
+		dataType: decimal
+		lineageTag: 08e9a7a5-2bfc-48f2-90ff-a40a5ece0d69
+		summarizeBy: sum
+		sourceColumn: Valor Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Descuento
+		dataType: decimal
+		lineageTag: 232550c7-9a59-4906-9da8-fdc87009e106
+		summarizeBy: sum
+		sourceColumn: Descuento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Valor Total c/ Descuento'
+		dataType: decimal
+		lineageTag: 33b01883-3cbb-480d-a639-d21178cca12b
+		summarizeBy: sum
+		sourceColumn: Valor Total c/ Descuento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Costo Total'
+		dataType: decimal
+		lineageTag: fd6a33df-c3d4-4564-960e-cb0194e40610
+		summarizeBy: sum
+		sourceColumn: Costo Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Utilidad
+		dataType: decimal
+		lineageTag: a141a1e5-5808-47a2-802b-821101936cd6
+		summarizeBy: sum
+		sourceColumn: Utilidad
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Fecha
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 542c5a5c-cccf-4bbd-b560-17d4b1fe1c46
+		summarizeBy: none
+		sourceColumn: Fecha
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition VentasFact = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(Web.Contents("https://github.com/borgesnancya-blip/Proyecto/raw/refs/heads/main/Analisis%20de%20ventas.xlsx"), null, true),
+				    BD_Sheet = Origen{[Item="BD",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(BD_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"Tipos de Clientes", type text}, {"País", type text}, {"Produto", type text}, {"Valor Total", type number}, {"Descuento", type number}, {"Valor Total c/ Descuento", type number}, {"Costo Total", type number}, {"Utilidad", type number}, {"Fecha", type date}, {"Mes", type text}, {"Año", Int64.Type}}),
+				    #"Columnas quitadas" = Table.RemoveColumns(#"Tipo cambiado",{"Mes", "Año"}),
+				    #"Tipo cambiado1" = Table.TransformColumnTypes(#"Columnas quitadas",{{"Valor Total", Currency.Type}, {"Descuento", Currency.Type}, {"Valor Total c/ Descuento", Currency.Type}, {"Costo Total", Currency.Type}, {"Utilidad", Currency.Type}}),
+				    #"Valor reemplazado" = Table.ReplaceValue(#"Tipo cambiado1","Estados Unidos","EE UU",Replacer.ReplaceText,{"País"})
+				in
+				    #"Valor reemplazado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+
