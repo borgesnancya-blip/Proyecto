@@ -90,7 +90,7 @@ table VentasFact
 		mode: import
 		source =
 				let
-				    Origen = Excel.Workbook(Web.Contents("https://github.com/borgesnancya-blip/Proyecto/raw/refs/heads/main/Analisis%20de%20ventas.xlsx"), null, true),
+				    Origen = Excel.Workbook(Web.Contents("https://raw.githubusercontent.com/borgesnancya-blip/Proyecto/main/Analisis%20de%20ventas.xlsx"), null, true),
 				    BD_Sheet = Origen{[Item="BD",Kind="Sheet"]}[Data],
 				    #"Encabezados promovidos" = Table.PromoteHeaders(BD_Sheet, [PromoteAllScalars=true]),
 				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"Tipos de Clientes", type text}, {"País", type text}, {"Produto", type text}, {"Valor Total", type number}, {"Descuento", type number}, {"Valor Total c/ Descuento", type number}, {"Costo Total", type number}, {"Utilidad", type number}, {"Fecha", type date}, {"Mes", type text}, {"Año", Int64.Type}}),

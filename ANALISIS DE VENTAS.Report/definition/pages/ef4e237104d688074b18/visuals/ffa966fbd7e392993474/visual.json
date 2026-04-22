@@ -1,0 +1,97 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "ffa966fbd7e392993474",
+  "position": {
+    "x": 806.4,
+    "y": 269.28000000000003,
+    "z": 1,
+    "height": 299.52000000000004,
+    "width": 473.76
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VentasFact"
+                    }
+                  },
+                  "Property": "País"
+                }
+              },
+              "queryRef": "VentasFact.País",
+              "nativeQueryRef": "País"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tabla_Medidas"
+                    }
+                  },
+                  "Property": "lucho_ganancias"
+                }
+              },
+              "queryRef": "Tabla_Medidas.lucho_ganancias",
+              "nativeQueryRef": "lucho_ganancias"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tabla_Medidas"
+                    }
+                  },
+                  "Property": "Margen%"
+                }
+              },
+              "queryRef": "Tabla_Medidas.Margen%",
+              "nativeQueryRef": "Margen%"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tabla_Medidas"
+                    }
+                  },
+                  "Property": "Costos"
+                }
+              },
+              "queryRef": "Tabla_Medidas.Costos",
+              "nativeQueryRef": "Costos"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tabla_Medidas"
+                    }
+                  },
+                  "Property": "Descuento"
+                }
+              },
+              "queryRef": "Tabla_Medidas.Descuento",
+              "nativeQueryRef": "Descuento"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
