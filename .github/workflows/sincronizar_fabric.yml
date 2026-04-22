@@ -1,20 +1,21 @@
-name: Agente_Sincronizacion
+name: Agente_Sincronizacion_Gala
 
-# 1. El disparador: Se activa solo cuando haces "push" a la rama main
 on:
   push:
     branches:
       - main
 
+# Aquí agregamos la "vitamina" para que no dé advertencias
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   notificar_fabric:
     runs-on: ubuntu-latest
     steps:
-      - name: 📥 Descargando archivos del repositorio
-        uses: actions/checkout@v4
+      - name: 📥 Descargando archivos
+        uses: actions/checkout@v4 # Podés dejar la v4, con el ENV de arriba se arregla
 
-      - name: 🤖 Activando Agente de Despliegue
+      - name: 🤖 Activando Agente
         run: |
-          echo "Detectado cambio en la rama main."
-          echo "Sincronizando archivos con el Workspace de Fabric..."
-          # Aquí es donde el Agente termina de preparar la versión para que Fabric la absorba
+          echo "¡Agente ejecutado con éxito!"
