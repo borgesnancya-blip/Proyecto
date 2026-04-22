@@ -40,8 +40,8 @@ El punto culminante es la integración con **Microsoft Fabric**, donde el Worksp
 ---
 
 ## 3. Visualización del Pipeline 🖼️
-![Arquitectura del Proyecto](Captura_de_pantalla_1452.png)
-*(Asegúrate de que el nombre del archivo de imagen en GitHub coincida exactamente con el que pongas entre los paréntesis)*
+![Arquitectura del Proyecto]
+<img width="214" height="303" alt="Captura de pantalla (1452)" src="https://github.com/user-attachments/assets/0c435fa0-4c11-4eb7-a868-3b657c4f9e67" />
 
 ---
 
